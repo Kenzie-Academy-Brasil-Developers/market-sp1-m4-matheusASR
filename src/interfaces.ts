@@ -3,27 +3,23 @@ interface IProduct {
   name: string;
   price: number;
   weight: number;
+  calories?: number;
   section: "food" | "cleaning";
   expirationDate: Date;
 }
-
-interface ICleaningProduct {
-  id: number;
-  name: string;
-  price: number;
-  weight: number;
-  section: "cleaning";
-  expirationDate: Date;
-}
-
-interface IFoodProduct {
-  id: number;
-  name: string;
-  price: number;
-  weight: number;
+interface IFoodProduct extends IProduct {
   section: "food";
-  expirationDate: Date;
-  calories: number;
+}
+interface ICleaningProduct extends IProduct {
+  section: "cleaning";
 }
 
-export { IProduct, IFoodProduct, ICleaningProduct };
+interface IResponseCreateProduct {
+  total: number;
+  marketProducts: IProduct[]
+}
+
+type TProductRequest = Omit<IProduct, "id" | "expirationDate">;
+type TProductUpdate = Partial<IProduct>;
+
+export { IProduct, TProductRequest, TProductUpdate, ICleaningProduct, IFoodProduct, IResponseCreateProduct };

@@ -1,5 +1,11 @@
 import express, { Application, json } from "express";
-import { createProducts, deleteProducts, getProducts, getProductsById, updateProducts } from "./logic";
+import {
+  createProducts,
+  deleteProducts,
+  getProducts,
+  getProductsById,
+  updateProducts,
+} from "./logic";
 import { idExist, nameExist } from "./middlewares";
 
 const app: Application = express();
@@ -10,8 +16,8 @@ const runningMsg: string = "Server is running";
 
 app.listen(PORT, () => console.log(runningMsg));
 
-app.post('/products', nameExist, createProducts)
-app.get('/products', getProducts)
-app.get('/products/:id', idExist, getProductsById)
-app.patch('/products/:id', nameExist, idExist, updateProducts)
-app.delete('/products/:id', idExist, deleteProducts)
+app.post("/products", nameExist, createProducts);
+app.get("/products", getProducts);
+app.get("/products/:id", idExist, getProductsById);
+app.patch("/products/:id", nameExist, idExist, updateProducts);
+app.delete("/products/:id", idExist, deleteProducts);
