@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import { market } from "./database";
 import {
-  ICleaningProduct,
-  IFoodProduct,
   IProduct,
   TProductRequest,
-  IResponseCreateProduct
+  IResponseCreateProduct,
+  TProductUpdate
 } from "./interfaces";
 
 const createProducts = (req: Request, res: Response): Response => {
@@ -53,7 +52,7 @@ const getProductsById = (req: Request, res: Response): Response => {
 const updateProducts = (req: Request, res: Response): Response => {
   const { foundProductById, productIndex } = res.locals
 
-  const requestBody = req.body
+  const requestBody: TProductUpdate = req.body
   const product: IProduct = (market[productIndex] = {
     ...foundProductById,
     ...requestBody
